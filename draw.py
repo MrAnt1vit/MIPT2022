@@ -2,7 +2,7 @@ from consts import *
 import pygame
 
 
-def update_screen(screen, light_color, sky_color, field_color, stripe_color, day, lights_on, DARKNESS):
+def update_screen(screen, light_color, sky_color, field_color, stripe_color, day, lights_on, DARKNESS, man):
     screen.fill(sky_color)
 
     # stripes
@@ -81,6 +81,11 @@ def update_screen(screen, light_color, sky_color, field_color, stripe_color, day
 
     pygame.draw.line(screen, BRIGHT_YELLOW, [140, 220], [135, 190], 3)
     pygame.draw.line(screen, BRIGHT_YELLOW, [660, 220], [665, 190], 3)
+
+    pygame.draw.ellipse(screen, GRAY, [*man, 30, 30])
+    pygame.draw.ellipse(screen, BLACK, [*man, 30, 30], 3)
+    for i in man_lines:
+        pygame.draw.line(screen, BLACK, [man[0] + i[0], man[1] + i[1]], [man[0] + i[2], man[1] + i[3]], i[4])
 
     # DARKNESS
     if not day and not lights_on:
